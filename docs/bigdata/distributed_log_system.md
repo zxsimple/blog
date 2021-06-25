@@ -1,4 +1,4 @@
-本文旨在介绍如何搭建一个基于分布式的网络日志采集系统，本文将从介绍理论入手，讲解所需技术的理论知识，然后实践此过程。
+> 本文旨在介绍如何搭建一个基于分布式的网络日志采集系统，本文将从介绍理论入手，讲解所需技术的理论知识，然后实践此过程。
 
 本文中涉及到的技术产品有Apache HTTP Server，Tomcat和RabbitMQ，会介绍Apache模块，Apache的代理和负载均衡技术；RabbitMQ相关消息处理技术。基于此技术基础将会实践如何利用这些技术搭建分布式网络日志收集系统。
 
@@ -57,7 +57,7 @@ setHandler helloworld
 
 例如，我们在公司访问外部网络时是通过代理服务其访问的，在访问允许资源的时候我们是不知道代理服务器的存在，而当我们访问blog等受限资源时代理服务器就会阻止我们的请求。
 
-<img src="_images/forward-proxy.svg" alt="forward-proxy"/>
+![forward-proxy](_images/forward-proxy.svg)
 
 **反向代理**
 
