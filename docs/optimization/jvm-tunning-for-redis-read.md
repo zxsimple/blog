@@ -6,7 +6,7 @@
 
 通过`jstat -gcutil [pid] [interval] [times]`打印GC的情况，发现在程序hang住时Eden和Old区使用为100%，FGC(Full GC)频繁发生。
 
-![](resource\jstat.png)
+![](_images\jstat.png)
 
 查看程序代码发现在调用jdeis读取Redis时会生成`String`对象，由于是高并发读取Redis，因此Eden区生成大量的生命周期极短的对象，YGC来不及回收，而FGC频发。这时处理GC花费的时间超过 **98%**, 并且GC回收的内存少于 **2%**，就会产生上述错误。
 
