@@ -57,7 +57,7 @@ setHandler helloworld
 
 例如，我们在公司访问外部网络时是通过代理服务其访问的，在访问允许资源的时候我们是不知道代理服务器的存在，而当我们访问blog等受限资源时代理服务器就会阻止我们的请求。
 
-![forward-proxy](_images/forward-proxy.svg)
+![forward-proxy](/Users/sanders/Workspace/zxsimple/blog/docs/bigdata/_images/forward-proxy.svg)
 
 **反向代理**
 
