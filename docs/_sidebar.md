@@ -3,6 +3,7 @@
 * [Big Data](bigdata.md)
   * [分布式日志采集系统](bigdata/distributed_log_system.md)
 * [Machine Learning](machine-learning.md)
+  * [MLP网络实现](ml/mlp-implementation.md)
 * [System Optimization](optimization.md)
   * [Tomcat Optimization](optimization/tomcat-optimization.md)
   * [Redis高吞吐读场景下的](optimization/jvm-tunning-for-redis-read.md)
