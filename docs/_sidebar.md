@@ -10,7 +10,7 @@
 * [System Optimization](optimization.md)
   * [Tomcat Optimization](optimization/tomcat-optimization.md)
   * [Redis高吞吐读场景下的](optimization/jvm-tunning-for-redis-read.md)
-* [Achitecture](architecture.md)
+* [Architecture](architecture.md)
   * [RSA原理及实现](architecture/rsa-principle-and-implementation.md)
   * [推荐Serving系统设计](architecture/ctr-serving-system.md)
   * [分布式系统为什么需要Zookeeper和etcd](architecture/why-need-zk-and-etcd.md)

@@ -16,7 +16,7 @@
 
 用户、数据和计算正在以前所未有的程度参与并加速重构人类生活方式。
 
-![数据计算演进路线](_images/Data-Computing-Revolution.png)
+![数据计算演进路线](_images/Data-Computing-Revolution.png ':size=800')
 
 *https://www.kinetica.com/blog/gpu-computing-revolutionizing-real-time-analytics-retail-cpg-logistics-supply-chain/*
 
@@ -36,7 +36,7 @@
 
   通常一个团队中的数据科学具有不同的技术背景，不同的计算框架有其特定，通用的机器学习平台面向的场景和任务具有多样性；平台要对变化开发，以高效的方式支持不同用户的需求
 
-![](_images/fullstack-ml.gif)
+![](_images/fullstack-ml.gif ':size=800')
 
 ### 关键架构因素
 
@@ -92,27 +92,27 @@ Serving是一个相对独立的子系统，需要考虑E2E预测延时，弹性�
 
 我们可以通过X on Spark，将大量外部计算框架和Spark结合起来，这样就可以统一计算和数据存储；而在这个过程中我们需要解决的主要问题是计算框架对于Kerberos认证机制的打通。
 
-![X-on-Spark](_images/XOnSpark.png)
+![X-on-Spark](_images/XOnSpark.png ':size=600')
 
-## 特征存储及分布式表示
+### 特征存储及分布式表示
 
-### 内存特征、向量、矩阵进行存储，数据列式存储
+#### 内存特征、向量、矩阵进行存储，数据列式存储
 
 > Apache Arrow 是 Apache 基金会的顶级项目之一，目的是作为一个跨平台的数据层来加快大数据分析项目的运行速度。它包含一组规范的内存中的平面和分层数据表示，以及多种语言绑定以进行结构操作。 它还提供低架构流式传输和批量消息传递，零拷贝进程间通信（IPC）和矢量化的内存分析库。
 
-![](_images/Apache-Arrow.jpeg)
+![](_images/Apache-Arrow.jpeg ':size=800')
 
 计算机系统中设备的R/W速度与它的成本成正比，现在计算机中的RAM成本和容量都足以支持大数据的存储和计算，通过内存存储可以实现对大数据的加速；Hadoop原本是基于网络和磁盘I/O设计的，对内存的使用率不高，因此增加对内存的使用率可以有效提高大数据处理的效率。
 
 ![](_images/dremio-bottleneck-3.jpg)
 
-### 向量/矩阵分布式表示，稀疏特征压缩
+#### 向量/矩阵分布式表示，稀疏特征压缩
 
 在分布式机器学习计算中对分布式向量和矩阵的分布式表示以及对稀疏特征的压缩处理可以提高数据的并行计算度和存储压缩比，Spark中会采用`RowMatrix`,`CoordinateMatrix`和`BlockMatrix`等存储来对不同形式的[数据类型](https://spark.apache.org/docs/latest/mllib-data-types.html)进行矩阵进表示，而在腾讯新一代机器学习框架`PS2`中，采用`Dimension Co-located Vector (DCV)`进行分布式向量优化。
 
 业界也有很多标准的数据存储表示来对不同场景的向量矩阵进行优化。
 
-![](_images/Matrix-Row-Column-Storage.png)
+![](_images/Matrix-Row-Column-Storage.png ':size=600')
 
 - Coordinate Format (COO)
 - Compressed sparse row (CSR)
@@ -123,13 +123,13 @@ Serving是一个相对独立的子系统，需要考虑E2E预测延时，弹性�
 - Java Sparse Array (JSA)
 - Dimension Co-located Vector (DCV)
 
-![](_images/Popular-Storage-Formats.png)
+![](_images/Popular-Storage-Formats.png ':size=600')
 
 其中`Dimension Co-located Vector (DCV)`对Spark ML的优化有比较大的性能提升。
 
-![](_images/Effectiveness-of-DCV.png)
+![](_images/Effectiveness-of-DCV.png ':size=600')
 
-## 矩阵计算加速
+### 矩阵计算加速
 
 Spark兴起的时代GPU的应用十分有限，而近期深度学习在CV领域的突破促进了GPU加速的广泛应用，而传统基于Python的机器学习框架`sklearn`也不支持GPU加速。
 
@@ -156,33 +156,33 @@ NVIDIA推出的运算平台CUDA（Compute Unified Device Architecture）是通�
 
 在实际CTR场景中我们要支持一个DeepFM模型在线20000TPS的请求，采用[Angel Math2](https://github.com/Angel-ML/math2)在Intel`24 cores, Intel(R) Xeon(R) Gold 6151 CPU @ 3.00GHz`上预估需要153台节点才能满足业务需求。在我们的测试服务器上CPU的使用率已经高达80%以上。随着我们更多，更复杂模型在线上的部署，必须要采用针对对专有芯片的数学计算库才能有效降低资源开销。
 
-## 并行计算
+### 并行计算
 
 在大规模数据和模型训练的场景中，由于训练样本规模大或者网络参数大，通常单个节点不能完成对模型的训练，这时就需要多节点协同的方式完成模型的训练，采用分而治之的思想。一般会有数据并行和模型并行两种思路来实现任务的分解和并行训练。
 
-### 数据并行
+#### 数据并行
 
 为不同的计算节点保留同一个模型的副本，每个节点分配到不同的数据，每个节点在本地计算持有数据的模型参数，然后将所有计算节点的计算结果按照某种方式合并生成最终的模型。
 
 在这个过程中数据拆分的方式可以是随机的方式，也可以采用shuffle机制保证数据样本的均衡；而参数同步和合并方式主流的有`Parameter Server`和`Ring All-Reduce`方式。
 
-![1574909472497](_images/Data-Parallel-1.png)
+![1574909472497](_images/Data-Parallel-1.png ':size=400')
 
-#### Parameter Server
+**Parameter Server**
 
 在Parameter Server架构中，集群中的节点被分为两类：Parameter Server和Worker。其中Parameter Server存放模型的参数，而Worker负责计算参数的梯度。在每个迭代过程，Worker从Parameter Sever中获得参数，然后将计算的梯度返回给Parameter Server，Parameter Server聚合从Worker传回的梯度，然后更新参数，并将新的参数广播给Worker。
 
 其中参数在Parameter Server和Worker之间的同步既可以是同步的(Synchronous)，也可以是异步的(Asynchronous)。
 
-![1574909556057](_images/Parameter-Update.png)
+![1574909556057](_images/Parameter-Update.png ':size=500')
 
-#### Ring AllReduce
+**Ring AllReduce**
 
 在Ring-Allreduce架构中，各个节点都是Worker，没有中心节点来聚合所有Worker计算的梯度。在一个迭代过程，每个Worker完成自己的mini-batch训练，计算出梯度，并将梯度传递给环中的下一个Worker，同时它也接收从上一个Worker的梯度。对于一个包含N个Worker的环，各个Worker需要收到其它N-1个worker的梯度后就可以更新模型参数。
 
-![1574910072561](_images/Ring-AllReduce.png)
+![1574910072561](_images/Ring-AllReduce.png ':size=800')
 
-### 模型并行
+#### 模型并行
 
 如果训练模型的规模很大，不能在每个计算节点的本地内存中完全存储，那么就可以对模型进行划分，然后每个计算节点负责对本地局部模型的参数进行更新。通常对线性可分的模型和非线性模型（神经网络），模型并行的方法也会有所不同。
 
@@ -192,43 +192,43 @@ NVIDIA推出的运算平台CUDA（Compute Unified Device Architecture）是通�
 
   在Angel的实现中就主要使用模型并行的方法使用`ModelPartitioner`实现模型分布式计算。
 
-  ![img](_images/Angel-model-partitioner.png)
+  ![img](_images/Angel-model-partitioner.png ':size=800')
 
 - 神经网络
 
   神经网络中模型具有很强的非线性性，参数之间有较强的关联依赖，通常可以横向按层划分或纵向跨层划分进行网络划分。每个计算节点计算局部参数然后通过RPC将参数传递到其他节点上进行参数的合并，复杂的神经网络需要较高的网络带宽来完成节点之间的通信。
 
-![1574905162947](_images/Model-Parallel.png)
+![1574905162947](_images/Model-Parallel.png ':size=200')
 
-#### CTR模型并行训练
+**CTR模型并行训练**
 
 通常典型深度CTR模型是**Embedding Layer + MLP**结构；对于10亿特征，Embedding Size为16的CTR模型来说Embedding模型的大小为10^9 * 16 * 4B ≈ 60GB，而MLP的大小只有几个MB。训练Embedding网络的效率将会是CTR模型训练的瓶颈所在。如果在网络中传输Embedding模型参数，整个时延和成本将是不可接受的。如何解决模型的存储及减少网路传输是关键，华为[Mindspore](https://www.mindspore.cn/)和NVIDIA[HugeCTR](https://github.com/NVIDIA/HugeCTR)分别给出Host-Device和Embedding Hashtable的方案。
 
 **Host-Device**
 
-![img](https://pic3.zhimg.com/80/v2-b84d8cc6f0fe2c9d0cd3a45615795c2a_720w.jpg)
+![img](https://pic3.zhimg.com/80/v2-b84d8cc6f0fe2c9d0cd3a45615795c2a_720w.jpg ':size=600')
 
-详细介绍[参考][https://zhuanlan.zhihu.com/p/164683221]，根据模型大小，选择将模型放在Device或者Host内存中，Device计算梯度后更新Embedding模型，如果模型在Host内存中，只需要在Device和Host之间进行内存拷贝，这个速度是远远大于网络传输的。
+详细介绍[参考](https://zhuanlan.zhihu.com/p/164683221)，根据模型大小，选择将模型放在Device或者Host内存中，Device计算梯度后更新Embedding模型，如果模型在Host内存中，只需要在Device和Host之间进行内存拷贝，这个速度是远远大于网络传输的。
 
 **Embedding Hash Table**
 
 [HugeCTR介绍](https://www.nvidia.cn/content/dam/en-zz/zh_cn/assets/webinars/nov19/HugeCTR_Webinar_1.pdf)中详细描述其设计方案：通过open addressing hash算法将所有的特征平均地分在所有Device上，每个Device内存中存储Embedding的一部分，通过实现reduce_scatter算子实现模型传输，all_gather进行模型合并。
 
-![image-20210203140744561](_images/hugectr.png)
+![image-20210203140744561](_images/hugectr.png ':size=600')
 
-## 参数传输
+### 参数传输
 
 在数据并行中，各个Worker节点利用本地的训练数据进行模型训练，为了达到全局一致性，节点之间需要进行通信以对各个节点的参数进行合并；在模型并行中，各个Worker利用相同的一份数据对模型的不同部分进行训练，每个节点要依赖于其他节点的中间计算结果才能继续它的计算，因此系统需要进行通信以获取中间结果。
 
 如果训练任务中网络传输的时间在总体时间中占比较高，那么优化网络传输对加速模型训练至关重要。而加速网络传输需要考虑很多方面：
 
-### 网络带宽
+#### 网络带宽
 
 **InfiniBand(IB)**是一个用于高性能计算高性能计算的计算机网络通信标准，它具有极高的吞吐量和极低的延迟，用于计算机与计算机之间的数据互连。在深度模型训练中往往使用支持IB的网卡来加速网络传输。
 
 **RDMA(Remote Direct Memory Access)**技术全称远程直接数据存取，就是为了解决网络传输中服务器端数据处理的延迟而产生的。RDMA通过网络把远程数据直接读入计算机的存储区，它消除了外部存储器复制和上下文切换的开销，因而能解放内存带宽和CPU周期用于改进应用系统性能。
 
-### 通信协议
+#### 通信协议
 
 **消息传递接口MPI(Message Passing Interface, MPI)**，MPI是一种跨语言和跨进程之间的一种消息通讯标准，会大量用于在HPC集群中节点之间的计算通信，其对高性能通信(特别是rdma)优化较好，支持InfiniBand高速网络设备。它支持的编程语言比较少，只支持C/C++，但是它的优势也很明显，就是速度。
 
@@ -238,9 +238,9 @@ NVIDIA推出的运算平台CUDA（Compute Unified Device Architecture）是通�
 
 以下是主流的机器学习框架采用的RPC通信框架，大家也是会在成本，效率，通用性等方面做平衡。
 
-| X                 | Spark | Angel | XDL         | Tensorflow | MXNet  | Horovod |
-| ----------------- | ----- | ----- | ----------- | ---------- | ------ | ------- |
-| Arrow Fight(RDMA) | Netty | Netty | ProtoBuffer | gRPC       | zeromq | MPI     |
+| Spark | Angel | XDL         | Tensorflow | MXNet  | Horovod |
+| ----- | ----- | ----------- | ---------- | ------ | ------- |
+| Netty | Netty | ProtoBuffer | gRPC       | zeromq | MPI     |
 
 在前面我们通过**Apache Arrow**将HDFS数据以列式存储在内存中来加速对数据的读取，而且生态组成部分**Apache Arrow Flight**是基于gRPC，PB等RPC框架之上的通信框架，它有以下优点：
 
@@ -258,7 +258,7 @@ Flight之所以传输速度很快的原因是：
 - **无限并行**，Flight采用Scale-out技术，它的传输速度值受限于Client和Server之间的网络带宽；
 - **网络使用率**，Flight采用gRPC和HTTP/2传输数据，可以提供高效的网络利用率。
 
-## 分布式优化算法
+### 分布式优化算法
 
 在分布式训练中并行或分布式SGD是一个非常好的选择，因为可以大大地提高速度。SGD算法的本质决定其是串行的(step-by-step)。
 
@@ -270,17 +270,16 @@ Flight之所以传输速度很快的原因是：
 - 计算节点从参数服务器pull更新后的全局参数w
 - 重复以上步骤直到全局收敛
 
-![img](_images/SGD.png)
+![img](_images/SGD.png ':size=400')
 
-![img](_images/PS-SGD.png)
 
-## 在线Serving
+### 在线Serving
 
 在实际场景中，业务对模型的要求是高复杂，低延时，大批量，高吞吐量和弹性伸缩，举例来说对于亿级特征训练出的DeepFM模型，线上业务要求每个batch包含1000个item的请求要在30ms内完成E2E响应。
 
 对于高吞吐量和弹性伸缩的处理我们可以交个kubernetes来实现，在容器基础设施具备的前提下并不会成为瓶颈，而对于复杂模型在大batch的请求和低延时的矛盾中还是需要通过设计和优化来实现。
 
-### Serving响应优化
+#### Serving响应优化
 
 我们的机器学习平台主要基于Spark和Angel，LightGBM实现，本身Spark是一个批处理系统，它在处理预测请求是需要初始化`SparkContext`并在`SparkContext`中实现预测数据的批量计算。通过[MLeap](https://github.com/combust/mleap)我们可以将Spark模型转化成MLeap支持的`Bundle`从而将离线批量处理转换成在线模式，而也可以通过MLeap提供的扩展性自定义实现LightGBM模型的在线Serving，而在我们实际的测试过程中MLeap的在线Serving延时也有很好的表现。
 
@@ -293,7 +292,7 @@ Flight之所以传输速度很快的原因是：
 
 而在更进一步的模型在线优化中可以考虑通过`模型量化`和硬件加速的策略提升模型Serving性能。
 
-### 缓存机制
+#### 缓存机制
 
 合理使用缓存和多级缓存结合的设计方法将有效降低高延时请求处理，从而提升系统的整体延时表现。
 

@@ -57,7 +57,7 @@ setHandler helloworld
 
 例如，我们在公司访问外部网络时是通过代理服务其访问的，在访问允许资源的时候我们是不知道代理服务器的存在，而当我们访问blog等受限资源时代理服务器就会阻止我们的请求。
 
-![forward-proxy](/Users/sanders/Workspace/zxsimple/blog/docs/bigdata/_images/forward-proxy.svg)
+![forward-proxy](_images/forward-proxy.svg ':size=500')
 
 **反向代理**
 
@@ -67,7 +67,7 @@ setHandler helloworld
 
 这两种代理的区别是前者客户端知道目标资源，而不知道代理的存在；后者客户端只知道代理服务器的存在，而不知道此资源的最终提供者。
 
-![reverse-proxy](_images/reverse-proxy.svg)
+![reverse-proxy](_images/reverse-proxy.svg ':size=500')
 
 而对于设置apache的反向代理是非常简单的，只要修改ProxyRequest Off就可以
 

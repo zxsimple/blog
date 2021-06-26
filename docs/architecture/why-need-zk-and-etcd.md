@@ -1,8 +1,10 @@
-> 想必大部分同学跟我一样对`Zookeeper`的八股文特性一头雾水，到底什么叫分布式协调？什么命名发现？什么是`Watcher`？虽然每个字都认识，但就是......于是拿来`Kafka`, `HBase`和`Kubernetes`一众分布式系统来探究到底分布式系统为什么要用`Zookeeper`，`Etcd`这样一些*分布式协调系统*，它们之间是如何交互的。
+> 想必大部分同学跟我一样对`Zookeeper`的八股文特性一头雾水，到底什么叫分布式协调？什么命名发现？什么是`Watcher`？虽然每个字都认识，但就是......
+
+> 于是拿来`Kafka`, `HBase`和`Kubernetes`一众分布式系统来探究到底分布式系统为什么要用`Zookeeper`，`Etcd`这样一些*分布式协调系统*，它们之间是如何交互的。
 
 ### CAP中的P
 
-<img src="_images/CAP-Partition-Tolerance.png" alt="CAP" style="zoom:50%;" />
+![CAP-Partition-Tolerance](_images/CAP-Partition-Tolerance.png ':size=500')
 
 > 推荐阅读[CAP理论中的P到底是个什么意思？](https://www.zhihu.com/question/54105974/answer/1643846752)
 
@@ -73,7 +75,7 @@ Client注册和注销，以及**分布式服务**中角色和状态发生变化�
 
 能，至少对**配置管理**这块我们完全可以用外部存储来实现，只需要保证存储服务的高可用，强一致性，高可靠，高性能。`etcd`的WAL，`Zookeeper`的事务日志和快照跟数据库原理一样，都是实现一致性数据存储。只不过`etcd`和`Zookeeper`通常都有多个节点提供数据读写服务，在不同节点之间进行日志复制和提交来实现**高可用**。
 
-<img src="_images/Raft2.png" alt="Log Replication" style="zoom:50%;" />
+![Raft2](_images/Raft2.png ':size=500')
 
 
 
@@ -87,7 +89,7 @@ Client注册和注销，以及**分布式服务**中角色和状态发生变化�
 
 在`Kafka`中每个`Topic`的`Partition`在多个`Worker`上都会选举出来一个`Leader`，只有`Leader`处理`Consumer`和`Producer`的读写请求
 
-<img src="_images/kafka-architecture-topics-replication-to-partition-0.png" style="zoom:70%;" />
+![kafka-architecture-topics-replication-to-partition-0](_images/kafka-architecture-topics-replication-to-partition-0.png ':size=500')
 
 **负责Leader于Follower的数据同步**
 
