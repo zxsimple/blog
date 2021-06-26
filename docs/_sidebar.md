@@ -5,9 +5,12 @@
 * [Machine Learning](machine-learning.md)
   * [MLP网络实现](ml/mlp-implementation.md)
   * [分布式机器学习平台架构设计](ml/distributed-machinelearning-platform-design.md)
+  * [贝叶斯优化原理-学习笔记](ml/bayesian-optimization.md)
+  * [轻量级Kubelfow](ml/lightweight-kubeflow.md)
 * [System Optimization](optimization.md)
   * [Tomcat Optimization](optimization/tomcat-optimization.md)
   * [Redis高吞吐读场景下的](optimization/jvm-tunning-for-redis-read.md)
 * [Achitecture](achitecture.md)
   * [RSA原理及实现](achitecture/rsa-principle-and-implementation.md)
-
+  * [推荐Serving系统设计](achitecture/ctr-serving-system.md)
+  * [分布式系统为什么需要Zookeeper和etcd](achitecture/why-need-zk-and-etcd.md)
