@@ -16,7 +16,7 @@
 
 用户、数据和计算正在以前所未有的程度参与并加速重构人类生活方式。
 
-![数据计算演进路线](_images/Data Comuting Revolution.png)
+![数据计算演进路线](_images/Data-Computing-Revolution.png)
 
 *https://www.kinetica.com/blog/gpu-computing-revolutionizing-real-time-analytics-retail-cpg-logistics-supply-chain/*
 
@@ -92,7 +92,7 @@ Serving是一个相对独立的子系统，需要考虑E2E预测延时，弹性�
 
 我们可以通过X on Spark，将大量外部计算框架和Spark结合起来，这样就可以统一计算和数据存储；而在这个过程中我们需要解决的主要问题是计算框架对于Kerberos认证机制的打通。
 
-![X-on-Spark](_images/X_on_Spark.png)
+![X-on-Spark](_images/XOnSpark.png)
 
 ## 特征存储及分布式表示
 

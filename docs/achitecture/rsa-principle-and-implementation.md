@@ -299,5 +299,5 @@ public class RSA {
 
 [web2.0calc](https://web2.0calc.com/)
 
-[Big Integer Calculator: *100 digits! A million digits?!*](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm)
+[Big Integer Calculator: 100 digits! A million digits?!](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm)
 
