@@ -108,22 +108,6 @@ trainInternal(minimizer, maxIterations, verbose, costFunction, initialTheta);
 
 ### 计算梯度
 
-**初始化ax**
-
-？？？？？？
-
-**计算zx**
-
-执行`forwardPropagate`，计算layer[1] -> layer[n - 1]的Zx值
-
-```java
-zx[i] = multiply(ax[i - 1], thetas[i - 1], false, true, conf);
-```
-
-**计算正则**
-
-??????
-
 **反向传播计算梯度**
 
 执行`backwardPropagate`计算梯度delta
