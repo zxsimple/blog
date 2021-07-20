@@ -52,3 +52,21 @@ awk -F'[$WORD]' '{Print NF}' $FILE
 # e.g, 冒号出现的数量
 awk -F'[:]' '{Print NF}' documents.txt
 ```
+
+### CPU
+
+**限制CPU使用率**
+
+```bash
+cpulimit --limit=40 tar -cvf access.log
+```
+> 限制`tar`命令使用最多40% CPU使用率
+
+**限制I/O占用CPU使用率**
+
+```bash
+ionice -c 3 -n 7 tar -cvf access.log
+```
+> `-c 3表示cpu空闲时执行`
+> 
+> `-n 7表示最低优先级执行`
