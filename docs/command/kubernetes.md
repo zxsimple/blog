@@ -15,6 +15,36 @@ sort |\
 uniq -c
 ```
 
+**查询所有pod请求的cpu数量**
+
+```bash
+# 查询所有pod请求的cpu数量
+kubectl get po -o \
+  custom-columns="Name:metadata.name,Namespace:metadata.namespace,CPU-request:spec.containers[*].resources.requests.cpu,CPU-limit:spec.containers[*].resources.limits.cpu" \
+  --all-namespaces
+
+# 过滤未Limit的Pod
+kubectl get po -o \
+  custom-columns="Name:metadata.name,Namespace:metadata.namespace,CPU-request:spec.containers[*].resources.requests.cpu,CPU-limit:spec.containers[*].resources.limits.cpu" \
+  --all-namespaces \
+  | awk '{if($3!="<none>")print}'
+```
+
+**查询所有pod请求的memory数量**
+
+```bash
+# 查询所有pod请求的memory数量
+kubectl get po -o \
+  custom-columns="Name:metadata.name,Namespace:metadata.namespace,Memory-request:spec.containers[*].resources.requests.memory,Memory-limit:spec.containers[*].resources.limits.memory" \
+  --all-namespaces
+
+# 过滤未Limit的Pod
+kubectl get po -o \
+  custom-columns="Name:metadata.name,Namespace:metadata.namespace,Memory-request:spec.containers[*].resources.requests.memory,Memory-limit:spec.containers[*].resources.limits.memory" \
+  --all-namespaces \
+  | awk '{if($3!="<none>")print}'
+```
+
 ### Network
 
 **服务端口转发**
@@ -74,7 +104,7 @@ done
 ### 删除正在Pending的PVC
 
 ```bash
-kubectl patch  pvc data-polyaxon-postgresql-0  -p '{"metadata":{"finalizers":null}}' -n polyaxon
+kubectl patch  pvc {PVC_NAME}  -p '{"metadata":{"finalizers":null}}' -n polyaxon
 ```
 
 **按时间排序查看事件**
