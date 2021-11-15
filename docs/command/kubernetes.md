@@ -104,7 +104,12 @@ done
 ### 删除正在Pending的PVC
 
 ```bash
-kubectl patch  pvc {PVC_NAME}  -p '{"metadata":{"finalizers":null}}' -n polyaxon
+kubectl patch pvc {PVC_NAME} -p '{"metadata":{"finalizers":null}}' -n {NAMESPACE}
+```
+### Released PV重新绑定PVC
+
+```bash
+kubectl patch pv {PVC_NAME} -p '{"spec":{"claimRef": null}}'
 ```
 
 **按时间排序查看事件**
