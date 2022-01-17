@@ -7,6 +7,7 @@
   * [分布式机器学习平台架构设计](ml/distributed-machinelearning-platform-design.md)
   * [贝叶斯优化原理-学习笔记](ml/bayesian-optimization.md)
   * [轻量级Kubelfow](ml/lightweight-kubeflow.md)
+  * [推荐排序模型在Tensorflow Serving上的推理优化](ml/ctr-inference-optimization-on-tfs.md)
 * [System Optimization](optimization/optimization.md)
   * [Tomcat Optimization](optimization/tomcat-optimization.md)
   * [高吞吐读场景下的JVM优化](optimization/jvm-tunning-for-redis-read.md)
