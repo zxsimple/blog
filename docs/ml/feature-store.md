@@ -224,7 +224,7 @@ Feature Store通常包含以下组成或者能力：
 
 #### 特征重要性评估
 
-采用XGboost评估特征对目标的显著性贡献，可从Weight/Gain/Cover](https://towardsdatascience.com/be-careful-when-interpreting-your-features-importance-in-xgboost-6e16132588e7)三种不同Metrics进行重要性分析。
+采用XGboost评估特征对目标的显著性贡献，可从[Weight/Gain/Cover](https://towardsdatascience.com/be-careful-when-interpreting-your-features-importance-in-xgboost-6e16132588e7)三种不同Metrics进行重要性分析。
 
 ### 特征监控
 
