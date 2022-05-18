@@ -6,6 +6,7 @@
   * [贝叶斯优化原理-学习笔记](ml/bayesian-optimization.md)
   * [轻量级Kubelfow](ml/lightweight-kubeflow.md)
   * [推荐排序模型在Tensorflow Serving上的推理优化](ml/ctr-inference-optimization-on-tfs.md)
+  * [推荐特征引擎 - Feature Store](ml/feature-store.md)
 * [System Optimization](optimization/optimization.md)
   * [Tomcat Optimization](optimization/tomcat-optimization.md)
   * [高吞吐读场景下的JVM优化](optimization/jvm-tunning-for-redis-read.md)
