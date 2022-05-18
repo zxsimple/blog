@@ -58,7 +58,7 @@
 
 Feature Store做为推荐系统的重要组成部分，对解决数据复杂性问题和协作问题至关重要。那我们该如何理解Feature Store呢？[featurestore.org](https://www.featurestore.org/what-is-a-feature-store)的定义是：
 
-> The Feature Store is where the features are stored and organized for the explicit purpose of being used to either train models (by Data Scientists) or make [predictions](https://www.datarobot.com/wiki/prediction/#:~:text=What does Prediction mean in,will churn in 30 days.) (by applications that have a trained model).
+> The Feature Store is where the features are stored and organized for the explicit purpose of being used to either train models (by Data Scientists) or make [predictions](https://www.datarobot.com/wiki/prediction) (by applications that have a trained model).
 
 Feature Store通常包含以下组成或者能力：
 
