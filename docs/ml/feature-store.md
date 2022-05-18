@@ -172,7 +172,7 @@ Feature Store通常包含以下组成或者能力：
 
 在线上和线下处理过程中特征视图和特征处理元数据，以及特征处理的`Transformation Library`是公用的，以此确保线上线下的处理一致性和降低处理逻辑的复杂度。
 
-![feature-store](/Users/sanders/Docs/Notebook/Tech/Architecture/_images/feature-store.png)
+![img](_images/feature-store.png)
 
 #### Feature Exporter
 
