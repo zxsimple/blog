@@ -6,7 +6,7 @@
 
 这是一个典型的推荐系统架构，完成一个推荐模型的训练发布上线以及完成在线推荐请求的处理涉及到很多系统的对接、不同特点技术栈的组织以及数据工程师、算法工程师、系统工程师的协作。在每个系统没有明显的短板且工程师们之间的配合良好的情况下才有可能让模型正确地、高效地服务线上的业务。
 
-​                 <img src="/Users/sanders/Docs/Notebook/Tech/Architecture/_images/recommend-architecture.png" alt="img" style="zoom:50%;" />        
+![img](_images/recommend-architecture.png)    
 
 归纳来讲推荐系统中核心的问题是：**工程师技能差异问题**，**数据复杂且链路长的问题**，**协作的问题**。
 
@@ -143,7 +143,7 @@ Feature Store通常包含以下组成或者能力：
 
 ### 特征数据流
 
-<img src="/Users/sanders/Docs/Notebook/Tech/Architecture/_images/feature-data-flow.png" alt="feature-data-flow" style="zoom:50%;" />
+![img](_images/feature-data-flow.png)
 
 1. 首先通过**特征注册**将用户、物品、上下文等特征注册到**特征数据集**中，包含了所有可能用到的特征以及特征的名称、数据类型、是连续还是离散特征、是实时还是离线特征、聚合方式等元数据；
 
@@ -210,7 +210,7 @@ Feature Store通常包含以下组成或者能力：
 
 采用Pearson和Spearman相关性生成特征之间的相关性矩阵。
 
-​                 ![img](/Users/sanders/Docs/Notebook/Tech/Architecture/_images/feature-correlation.png)        
+![img](_images/feature-correlation.png)        
 
 #### 特征分布
 
